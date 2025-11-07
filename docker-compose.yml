@@ -30,8 +30,6 @@ services:
         condition: service_healthy
     networks:
       - mern-network
-    ports:
-      - "5000:5000"   # ✅ เพิ่มบรรทัดนี้
 
   frontend:
     build:
