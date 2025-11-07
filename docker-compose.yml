@@ -1,7 +1,7 @@
+version: "3.9"
 services:
   mongo:
     image: mongo:7-jammy
-    container_name: mongodb
     restart: always
     environment:
       MONGO_INITDB_DATABASE: merndb
@@ -42,7 +42,7 @@ services:
     networks:
       - mern-network
     ports:
-      - "3000:80"     # ✅ เพิ่มบรรทัดนี้ (frontend เสิร์ฟบน port 80 ภายใน container)
+      - "3000:80"
 
   nginx:
     image: nginx:alpine
