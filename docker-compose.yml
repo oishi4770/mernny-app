@@ -1,5 +1,4 @@
 services:
-  # MongoDB Database
   mongo:
     image: mongo:7-jammy
     container_name: mongodb
@@ -16,7 +15,6 @@ services:
       timeout: 5s
       retries: 5
 
-  # Backend API
   backend:
     build:
       context: ./backend
@@ -32,8 +30,9 @@ services:
         condition: service_healthy
     networks:
       - mern-network
+    ports:
+      - "5000:5000"   # ✅ เพิ่มบรรทัดนี้
 
-  # Frontend
   frontend:
     build:
       context: ./frontend
@@ -44,8 +43,9 @@ services:
       - backend
     networks:
       - mern-network
+    ports:
+      - "3000:80"     # ✅ เพิ่มบรรทัดนี้ (frontend เสิร์ฟบน port 80 ภายใน container)
 
-  # Nginx Reverse Proxy
   nginx:
     image: nginx:alpine
     container_name: nginx-proxy
